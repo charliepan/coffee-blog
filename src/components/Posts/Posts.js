@@ -1,11 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
-export default class Posts extends Component {
+class Posts extends Component {
+    // check if there's a user logged in
+    // componentDidMount(){
+    //     if(!this.props.user.email){
+
+    //     }
+    // }
+
     render() {
+        console.log(this.props);
         return (
             <div>
-                posts
+                <h1>Recent Posts</h1>
             </div>
         )
     }
 }
+
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(Posts);

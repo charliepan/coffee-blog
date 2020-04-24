@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getUser} from '../../redux/reducer';
 
-export default class Landing extends Component {
+class Landing extends Component {
     constructor(props){
         super(props);
         this.state ={
@@ -22,11 +24,18 @@ export default class Landing extends Component {
         this.setState({registerView: !this.state.registerView})
     }
 
+    componentDidMount(){
+        if(this.props.user.email){
+            this.props.history.push('/posts')
+        }
+    }
+
     handleRegister = () =>{
         const {username, email, password, verPassword, picture, admin} = this.state;
         if(password !== '' && password === verPassword){
             axios.post('/auth/register', {username, email, password, admin, picture})
                  .then(res =>{
+                    this.props.getUser(res.data);
                     this.props.history.push('/posts');
                  })
                  .catch(err => console.log(err));
@@ -40,6 +49,7 @@ export default class Landing extends Component {
         const {email,password} = this.state;
         axios.post('/auth/login', {email, password})
              .then(res=>{
+                 this.props.getUser(res.data);
                  this.props.history.push('/posts');
              })
              .catch(err =>console.log(err));
@@ -77,3 +87,7 @@ export default class Landing extends Component {
         )
     }
 }
+
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, {getUser})(Landing);
