@@ -30,5 +30,10 @@ app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
 
 //Post Endpoints
+app.post('/api/post', blogCtrl.createPost);
+app.get('/api/post/:id', blogCtrl.getPost);
+
+//Comment Endpoints
+app.get('/api/comments', blogCtrl.getUserComments);
 
 app.listen(SERVER_PORT, () => console.log(`Listening from ${SERVER_PORT} server be`));

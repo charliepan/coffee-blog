@@ -9,10 +9,28 @@ class Posts extends Component {
     //     }
     // }
 
+    constructor(props){
+        super(props);
+        this.state={
+            posts:[],
+            postImage: ''
+        }
+    }
+
     render() {
         console.log(this.props);
         return (
             <div>
+                {this.props.user.admin ? 
+                (
+                    <div>
+                        <input type="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
+                        <button>Add Post</button>
+                    </div>
+                ) : null
+                }
                 <h1>Recent Posts</h1>
             </div>
         )

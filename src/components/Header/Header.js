@@ -11,6 +11,7 @@ const handleLogout = () =>{
          .then(()=>{
              // Clear user
             props.clearUser();
+            props.history.push('/');
          })
          .catch(err=>console.log(err));
 }
@@ -19,7 +20,7 @@ const handleLogout = () =>{
         return (
             <div>
                 <div>Beanfide</div>
-                {props.location.pathname !== '/' ?
+                {JSON.stringify(props.user) !== '{}' ?
                 (
                     <nav>
                         <Link to='/posts'>Posts</Link>
