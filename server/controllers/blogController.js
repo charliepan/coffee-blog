@@ -1,3 +1,6 @@
+const nodemailer = require('nodemailer'),
+      {EMAIL,PASSWORD} = process.env;
+
 module.exports = {
     createPost: (req,res) =>{
         const {id, title, image, content} = req.body,
@@ -26,5 +29,33 @@ module.exports = {
         db.comments.get_user_comments(id)
           .then(comments => res.status(200).send(posts))
           .catch(err => console.log(err));
+    },
+    contactEmail : (req, res) =>{
+        const { name, email, subject, content} = req.body
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.mail.yahoo.com',
+            port: 465,
+            service: 'yahoo',
+            secure: false,
+            auth: {
+                user: EMAIL,
+                pass: PASSWORD
+            }
+        });
+        transporter.sendMail({
+            from: `${name} <${email}>`,
+            to: `Beanafide <${EMAIL}>`,
+            subject: subject,
+            text: content
+        },(err,success) =>{
+            if(err){
+                console.log(err);
+                res.status(500).send(`An error has occured: ${err}`);
+            }
+            else{
+                console.log(success)
+                res.status(200).send('Success');
+            }
+        })
     }
 }
