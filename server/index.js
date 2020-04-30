@@ -31,6 +31,7 @@ app.get('/auth/logout', authCtrl.logout);
 
 //Post Endpoints
 app.post('/api/post', blogCtrl.createPost);
+app.get('/api/post', blogCtrl.getAllPosts);
 app.get('/api/post/:id', blogCtrl.getPost);
 
 //Comment Endpoints
