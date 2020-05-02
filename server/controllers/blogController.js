@@ -26,6 +26,16 @@ module.exports = {
           .then(()=> res.sendStatus(200))
           .catch(err=> res.status(500).send(err));  
     },
+    deletePost: (req,res) =>{
+        const {id} = req.params,
+              db = req.app.get('db');
+        
+              console.log(id);
+              
+        db.posts.delete_post(id)
+          .then(() => res.sendStatus(200))
+          .catch(err => res.status(500).send(err));
+    },
     getPost: (req,res) =>{
         const {post_id} = req.params,
               db = req.app.get('db');

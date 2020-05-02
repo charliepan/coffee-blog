@@ -34,6 +34,15 @@ export default class Articles extends Component {
         .catch(err => console.log(err));
     }
 
+    deletePost = () =>{
+        axios.delete(`/api/posts/${this.props.post.post_id}`)
+        .then(res => {
+            console.log("This is inside Delete Post: " + res.data);
+            this.props.getAllPosts();
+        })
+        .catch(err => console.log(err));
+    }
+
     handleToggle = () =>{
         this.setState({editView: !this.state.editView});
     }
@@ -48,7 +57,7 @@ export default class Articles extends Component {
             return ( 
                 <div>
                     <button onClick={this.handleToggle}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={this.deletePost}>Delete</button>
                 </div>
             )
         }

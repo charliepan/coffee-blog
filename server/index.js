@@ -34,6 +34,7 @@ app.post('/api/post', blogCtrl.createPost);
 app.get('/api/posts', blogCtrl.getAllPosts);
 app.get('/api/posts/:id', blogCtrl.getPost);
 app.put('/api/posts/:id', blogCtrl.editPost);
+app.delete('/api/posts/:id', blogCtrl.deletePost);
 
 //Comment Endpoints
 app.get('/api/comments', blogCtrl.getUserComments);
