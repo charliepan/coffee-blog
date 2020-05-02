@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import Articles from '../Articles/Articles';
 
 
 class Posts extends Component {
@@ -19,10 +20,14 @@ class Posts extends Component {
             image: '',
             content: '',
             date_added: '',
-            rating: 0,
+            rating: 1,
             likes: 0,
             addPost: false,
         }
+    }
+
+    componentDidMount(){
+        this.getAllPosts();
     }
 
     getAllPosts = () =>{
@@ -40,13 +45,23 @@ class Posts extends Component {
     }
 
     createPost = () =>{
-        let d  = new Date();
-        this.setState({date_added: `${d.getMonth()+1}/${d.getDate()}/${d.getYear()} @ ${d.getHours()}:${d.getMinutes} CT`});
+        const d  = new Date();
+        const d_str = `${d.getMonth()+1}/${d.getDate()}/${d.getYear()} @ ${d.getHours()}:${d.getMinutes} CT`;
+        this.setState({date_added: d_str});
         const {title, image, content, date_added, rating, likes} = this.state;
+        console.log(this.props.user.user_id);
+        console.log(this.state);
         if(image !== '' || content !== ''){
             axios.post('/api/post', {user_id:this.props.user.user_id,title, image, content, date_added, rating, likes})
-                 .then(res =>{
+                 .then(() =>{
                     this.getAllPosts();
+                    this.setState({
+                        title: '',
+                        image: '',
+                        content: '',
+                        date_added: '',
+                        rating: 0,
+                    });
                  })
                  .catch(err => console.log(err));
         }
@@ -57,28 +72,29 @@ class Posts extends Component {
 
     render() {
         
-        const mappedPosts = this.state.posts.map((post, i)=>{
-            let limitCont = post.content;
-            if(limitCont.length > 200){
-                limitCont = limitCont.substring(0,200);
-            }
-            return(
-                <div class='post-box'>
-                    <img key={i} src={post.image} alt="blog-post"/>
-                    <h3>{post.title}</h3>
-                    <article>{limitCont}</article>
-                    <span>{post.likes} Likes</span>
-                    <span>Create on {post.date_added}</span>
-                    {this.props.user.admin ?
-                        ( <div>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </div>
-                        ) : null
-                    }
-                </div>
-            )
-        })
+        // const mappedPosts = this.state.posts.map((post, i)=>{
+        //     let limitCont = post.content;
+        //     if(limitCont.length > 200){
+        //         limitCont = limitCont.substring(0,200);
+        //         console.log(limitCont);
+        //     }
+        //     return(
+        //         <div class='post-box'>
+        //             <img key={i} src={post.image} alt="blog-post"/>
+        //             <h3>{post.title}</h3>
+        //             <article>{limitCont}</article>
+        //             {/* <span>{post.likes} Likes</span> */}
+        //             <span>Created by {post.username}</span>
+        //             {this.props.user.admin ?
+        //                 ( <div>
+        //                     <button>Edit</button>
+        //                     <button>Delete</button>
+        //                 </div>
+        //                 ) : null
+        //             }
+        //         </div>
+        //     )
+        // })
 
         return (
             <div>
@@ -101,7 +117,8 @@ class Posts extends Component {
                 ) : null
                 }
                 <h1>Recent Posts</h1>
-                {mappedPosts}
+                {this.state.posts.map((post ,i) => <Articles key={i} post={post} admin={this.props.user.admin} getAllPosts={this.getAllPosts}/>)}
+                {/* {mappedPosts} */}
             </div>
         )
     }

@@ -3,10 +3,10 @@ const nodemailer = require('nodemailer'),
 
 module.exports = {
     createPost: (req,res) =>{
-        const {id, title, image, content} = req.body,
+        const {user_id,title, image, content, date_added, rating, likes} = req.body,
               db = req.app.get('db');
 
-        db.posts.create_post(id,title,image,content)
+        db.posts.create_post(user_id,title, image, content, date_added, rating, likes)
           .then(()=> res.sendStatus(200))
           .catch(err => res.status(500).send(err));
     },
@@ -16,18 +16,28 @@ module.exports = {
           .then(posts=> res.status(200).send(posts))
           .catch(err=> res.status(500).send(err));        
     },
-    getPost: (req,res) =>{
-        const {id} = req.params,
+    editPost: (req,res) =>{
+        const {title, image, content, rating} = req.body,
+              {id} = req.params;
               db = req.app.get('db');
-        db.posts.get_post(id)
+        // console.log(req.body);
+        // console.log(title, image, content, rating, id);
+        db.posts.edit_post(title, image, content, rating, id)
+          .then(()=> res.sendStatus(200))
+          .catch(err=> res.status(500).send(err));  
+    },
+    getPost: (req,res) =>{
+        const {post_id} = req.params,
+              db = req.app.get('db');
+        db.posts.get_post(post_id)
           .then(post=> res.status(200).send(post))
           .catch(err=> res.status(500).send(err));        
     },
     getUserComments: (req, res)=>{
-        const {id} = req.params,
+        const {user_id} = req.params,
               db = req.app.get('db');
-        db.comments.get_user_comments(id)
-          .then(comments => res.status(200).send(posts))
+        db.comments.get_user_comments(user_id)
+          .then(comments => res.status(200).send(comments))
           .catch(err => console.log(err));
     },
     contactEmail : (req, res) =>{
