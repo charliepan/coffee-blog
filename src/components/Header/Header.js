@@ -66,54 +66,6 @@ class Header extends Component {
 }
 
 
-// const Header = props => {
-//     let toggleMenu = false;
-// const handleLogout = () =>{
-//     axios.get('/auth/logout')
-//          .then(()=>{
-//              // Clear user
-//             props.clearUser();
-//             props.history.push('/');
-//          })
-//          .catch(err=>console.log(err));
-// }
-
-//         console.log(props);
-//         return (
-//             <nav className="bg-orange-700">
-//                 <div className="flex items-center justify-between px-4 py-2">
-//                     <div className='px-2'>
-//                         <FontAwesomeIcon icon="coffee" color="white"/>
-//                         <span className="h-8 text-white px-2">Beanafide</span>
-//                     </div>
-//                     <div>
-//                         <button className="px-3" onClick={()=> toggleMenu = !toggleMenu}>
-//                             <FontAwesomeIcon icon="bars" color="white"/>
-//                         </button>
-//                     </div>
-//                 </div>
-//                 {JSON.stringify(props.user) !== '{}' ?
-//                 (
-//                         <div className="px-4 pt-2 pb-4">
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 rounded" to='/posts'>Posts</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to='/contact'>Contact</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to=''>Socialize</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to='/profile'>Profile</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to='/' onClick={()=>handleLogout()}>Logout</Link>
-//                         </div>
-//                 ) :
-//                 (
-//                         <div className={`px-4 pt-2 pb-4 ${toggleMenu ? 'block':'hidden'}`}>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 rounded" to='/'>Home</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to='/posts'>Posts</Link>
-//                             <Link className="text-white block font-semibold hover:bg-orange-600 px-2 py-1 mt-1 rounded" to='/contact'>Contact</Link>
-//                         </div>
-//                 )}
-
-//             </nav>
-//         )
-// }
-
 const mapStateToProps = reduxState => reduxState;
 
 export default withRouter(connect(mapStateToProps,{clearUser})(Header))
