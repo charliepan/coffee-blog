@@ -37,7 +37,7 @@ class Posts extends Component {
     }
 
     handleToggle = () =>{
-        this.setState({registerView: !this.state.addPost});
+        this.setState({createModal: !this.state.addPost});
     }
 
     handleInput = (e) =>{
@@ -61,6 +61,7 @@ class Posts extends Component {
                         content: '',
                         date_added: '',
                         rating: 0,
+                        createModal: false
                     });
                  })
                  .catch(err => console.log(err));
@@ -97,10 +98,23 @@ class Posts extends Component {
         // })
 
         return (
-            <div>
+            <div className="container mx-auto px-6 py-20 bg-white h-screen">
+                {/* If admin user button will be available */}
                 {this.props.user.admin ? 
                 (
-                    <div>    
+                    <>    
+                        <button className="block bg-orange-700 hover:bg-orange-500 text-white uppercase text-lg mx-auto p-2 rounded" onClick={this.handleToggle}>Add Post</button>
+                    </>
+                ) : null
+                }
+
+                <div className="text-4xl font-bold text-center text-gray-800 mb-8">
+                    <h1 className="no-underline hover:underline">Recent Posts</h1>
+                </div>
+                {/* Toggle for create post */}
+                {this.state.createModal ?
+                (
+                    <div>
                         <input value={this.state.title} name='title' type="text" placeholder="title" onChange={(e)=> this.handleInput(e)}/>
                         <input value={this.state.image} name='image' type="text" placeholder="image" onChange={(e)=> this.handleInput(e)}/>
                         <select name="rating" id="" onChange={(e)=> this.handleInput(e)}>
@@ -112,11 +126,9 @@ class Posts extends Component {
                         </select>
                         <textarea value={this.state.content} name="content" id="" cols="30" rows="10" placeholder="Post content here" onChange={(e)=> this.handleInput(e)}></textarea>
                         <button onClick={this.createPost}>Submit</button>
-                        <button onClick={this.handleToggle}>Add Post</button>
                     </div>
                 ) : null
                 }
-                <h1>Recent Posts</h1>
                 {this.state.posts.map((post ,i) => <Articles key={i} post={post} admin={this.props.user.admin} getAllPosts={this.getAllPosts}/>)}
                 {/* {mappedPosts} */}
             </div>

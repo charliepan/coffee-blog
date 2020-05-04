@@ -5,5 +5,6 @@ SELECT p.post_id,
     p.date_added,
     p.rating,
     p.likes,
-    u.username FROM posts p
+    u.username,
+    u.profile_pic FROM posts p
 JOIN users u on u.user_id = p.user_id;
