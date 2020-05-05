@@ -113,19 +113,6 @@ class Posts extends Component {
                     <h1 className="no-underline hover:underline">Recent Posts</h1>
                 </div>
                 {/* Toggle for create post */}
-                    {/* <div>
-                        <input value={this.state.title} name='title' type="text" placeholder="title" onChange={(e)=> this.handleInput(e)}/>
-                        <input value={this.state.image} name='image' type="text" placeholder="image" onChange={(e)=> this.handleInput(e)}/>
-                        <select name="rating" id="" onChange={(e)=> this.handleInput(e)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <textarea value={this.state.content} name="content" id="" cols="30" rows="10" placeholder="Post content here" onChange={(e)=> this.handleInput(e)}></textarea>
-                        <button onClick={this.createPost}>Submit</button>
-                    </div> */}
                 {this.state.addPost ?
                 (
                     <>

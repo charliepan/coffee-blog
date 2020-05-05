@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-export default class Articles extends Component {
+class Articles extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -26,6 +28,9 @@ export default class Articles extends Component {
     //         rating: this.props.post.rating,
     //     })
     // }
+    postLink = () =>{
+        this.props.history.push(`/post/${this.props.post.post_id}`);
+    }
 
     editPost = () =>{
         const {title, image, content, rating} = this.state;
@@ -166,15 +171,15 @@ export default class Articles extends Component {
             limitCont = limitCont + '...';
             console.log(limitCont);
         }
-        console.log(this.props);
+        // console.log(this.props);
         return(
 
             <div className="flex justify-center max-w-sm w-full max-w-full flex my-10">
-                <div className="h-48 h-auto w-48 flex-none bg-cover rounded-t-none rounded-l text-center overflow-hidden" style={{'backgroundImage': `url(${this.props.post.image})`}} title="Post Image">
+                <div className="h-48 h-auto w-48 flex-none bg-cover rounded-t-none rounded-l text-center overflow-hidden" style={{'backgroundImage': `url(${this.props.post.image})`}} title="Post Image" onClick={this.postLink}>
                 </div>
                 <div className="w-1/2 border-r border-b border-gray-400 border-l-0 border-t bg-white rounded-b-none rounded-r p-4 flex flex-col justify-between leading-normal">
                     <div className="mb-8">
-                        <div className="text-gray-800 font-bold text-xl mb-2">{this.props.post.title}</div>
+                        <div className="text-gray-800 font-bold text-xl mb-2" onClick={this.postLink}>{this.props.post.title}</div>
                         <p className="text-gray-700 text-base">{limitCont}</p>
                     </div>
                     <div className="flex items-center">
@@ -190,3 +195,4 @@ export default class Articles extends Component {
     }
 }
 
+export default withRouter(Articles)

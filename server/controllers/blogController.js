@@ -37,16 +37,31 @@ module.exports = {
           .catch(err => res.status(500).send(err));
     },
     getPost: (req,res) =>{
-        const {post_id} = req.params,
+        const {id} = req.params,
               db = req.app.get('db');
-        db.posts.get_post(post_id)
+        db.posts.get_post(id)
           .then(post=> res.status(200).send(post))
           .catch(err=> res.status(500).send(err));        
     },
+    createComment: (req,res) =>{
+        const {user_id, post_id, comment} = req.body,
+        db = req.app.get('db');
+
+        db.comments.create_post(user_id, post_id, comment)
+            .then(()=> res.sendStatus(200))
+            .catch(err => res.status(500).send(err));
+    },
     getUserComments: (req, res)=>{
-        const {user_id} = req.params,
+        const {id} = req.params,
               db = req.app.get('db');
-        db.comments.get_user_comments(user_id)
+        db.comments.get_user_comments(id)
+          .then(comments => res.status(200).send(comments))
+          .catch(err => console.log(err));
+    },
+    getPostComments: (req, res)=>{
+        const {id} = req.params,
+              db = req.app.get('db');
+        db.post.get_post_comments(id)
           .then(comments => res.status(200).send(comments))
           .catch(err => console.log(err));
     },
@@ -93,7 +108,7 @@ module.exports = {
         transporter.sendMail({
             from: `Beanafide <${EMAIL}>`,
             to: `${name} <${email}>`,
-            subject: `We have received you email regarding "${subject}"`,
+            subject: `We have received your email regarding "${subject}"`,
             text: "We ask that you please allow up to 1-2 days for the blog staff to get back to you. We're trying our best to respond on a timely manner. Thank you!"
         },(err,success) =>{
             if(err){
