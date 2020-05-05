@@ -74,29 +74,6 @@ class Posts extends Component {
 
     render() {
         
-        // const mappedPosts = this.state.posts.map((post, i)=>{
-        //     let limitCont = post.content;
-        //     if(limitCont.length > 200){
-        //         limitCont = limitCont.substring(0,200);
-        //         console.log(limitCont);
-        //     }
-        //     return(
-        //         <div class='post-box'>
-        //             <img key={i} src={post.image} alt="blog-post"/>
-        //             <h3>{post.title}</h3>
-        //             <article>{limitCont}</article>
-        //             {/* <span>{post.likes} Likes</span> */}
-        //             <span>Created by {post.username}</span>
-        //             {this.props.user.admin ?
-        //                 ( <div>
-        //                     <button>Edit</button>
-        //                     <button>Delete</button>
-        //                 </div>
-        //                 ) : null
-        //             }
-        //         </div>
-        //     )
-        // })
 
         return (
             <div className="container mx-auto px-6 py-16 bg-white h-screen">

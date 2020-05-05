@@ -182,7 +182,7 @@ class Articles extends Component {
                         <div className="text-gray-800 font-bold text-xl mb-2" onClick={this.postLink}>{this.props.post.title}</div>
                         <p className="text-gray-700 text-base">{limitCont}</p>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-end">
                         <img className="w-10 h-10 rounded-full mr-4" src={`${this.props.post.profile_pic}`} alt={`Avatar of ${this.props.post.username}`} />
                         <div className="text-sm">
                             <p className="text-gray-800 leading-none">{this.props.post.username}</p>

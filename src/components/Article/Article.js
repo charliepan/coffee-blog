@@ -67,7 +67,7 @@ class Article extends Component {
                                     <div className="text-gray-800 font-bold text-xl mb-2">{this.state.post[0].title}</div>
                                     <p className="text-gray-700 text-base">{this.state.post[0].content}</p>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex items-center justify-end">
                                     <img className="w-10 h-10 rounded-full mr-4" src={`${this.state.post[0].profile_pic}`} alt={`Avatar of ${this.state.post[0].username}`} />
                                     <div className="text-sm">
                                         <p className="text-gray-800 leading-none">{this.state.post[0].username}</p>
@@ -78,7 +78,7 @@ class Article extends Component {
                     </div>)
                 :null
                 }
-                    <div className="container mx-auto px-6 bg-white">
+                    <div className="container mx-auto px-6 bg-white h-screen">
                         <div className="justify-center items-center flex overflow-x-hidden inset-0 outline-none focus:outline-none">
                             <div className="relative w-auto my-6 mx-auto w-full">
                                 <div className="border-0 relative flex flex-col w-full bg-white z-30">

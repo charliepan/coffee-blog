@@ -55,7 +55,7 @@ export default class Contact extends Component {
         return (
             <div className="container mx-auto px-6 py-12 bg-white h-screen">
                 <div className="justify-center items-center flex overflow-x-hidden inset-0 z-20 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl w-1/2">
+                        <div className="relative w-auto my-6 mx-auto w-5/6">
                         {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none z-30">
                                 {/*header*/}
@@ -80,7 +80,7 @@ export default class Contact extends Component {
                                     </div>
                                     <div className="flex flex-col mb-4 md:w-full">
                                         <label className="mb-2 font-bold text-lg text-gray-900">Question</label>
-                                        <textarea className="border py-2 px-3 text-gray-800" value={this.state.question} name="question" id="" cols="30" rows="10" placeholder="Enter your question here" onChange={(e)=> this.handleInput(e)}></textarea>
+                                        <textarea className="border py-2 px-3 text-gray-800" value={this.state.question} name="question" id="" cols="30" rows="6" placeholder="Enter your question here" onChange={(e)=> this.handleInput(e)}></textarea>
                                     </div>
 
                                 </div>
