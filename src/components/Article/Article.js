@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import Comments from '../Comments/Comments';
 
 class Article extends Component {
     constructor(props){
@@ -14,6 +15,7 @@ class Article extends Component {
 
     componentDidMount(){
         this.getPost();
+        this.getComments();
     }
 
     handleInput = (e) =>{
@@ -101,7 +103,7 @@ class Article extends Component {
                                     </div>
                                     ) : null
                                 }
-                                {/* {this.state.comments.map((comment ,i) => <Comments key={i} comment={comment} user_id={this.props.user.user_id} getComments={this.getComments}/>)} */}
+                                {this.state.comments.map((comment ,i) => <Comments key={i} comment={comment} user_id={this.props.user.user_id} getComments={this.getComments}/>)}
                                 </div>
                             </div>
                         </div>

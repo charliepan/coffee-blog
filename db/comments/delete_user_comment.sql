@@ -1,2 +1,2 @@
-DELETE * FROM comments
+DELETE FROM comments
 WHERE comment_id = $1;

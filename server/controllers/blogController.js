@@ -18,7 +18,7 @@ module.exports = {
     },
     editPost: (req,res) =>{
         const {title, image, content, rating} = req.body,
-              {id} = req.params;
+              {id} = req.params,
               db = req.app.get('db');
         // console.log(req.body);
         // console.log(title, image, content, rating, id);
@@ -47,7 +47,7 @@ module.exports = {
         const {user_id, post_id, comment} = req.body,
         db = req.app.get('db');
 
-        db.comments.create_post(user_id, post_id, comment)
+        db.comments.create_comment(user_id, post_id, comment)
             .then(()=> res.sendStatus(200))
             .catch(err => res.status(500).send(err));
     },
@@ -61,9 +61,28 @@ module.exports = {
     getPostComments: (req, res)=>{
         const {id} = req.params,
               db = req.app.get('db');
-        db.post.get_post_comments(id)
+        db.posts.get_post_comments(id)
           .then(comments => res.status(200).send(comments))
           .catch(err => console.log(err));
+    },
+    editUserComment: (req,res)=>{
+        const {id} = req.params,
+        {comment} = req.body,
+        db = req.app.get('db');
+
+        db.comments.edit_user_comment(id, comment)
+            .then(()=> res.sendStatus(200))
+            .catch(err=> res.status(500).send(err));  
+    },
+    deleteUserComment: (req,res)=>{
+        const {id} = req.params,
+        db = req.app.get('db');
+  
+        console.log(id);
+        
+        db.comments.delete_user_comment(id)
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err));
     },
     contactEmail : (req, res) =>{
         const { name, email, subject, question} = req.body

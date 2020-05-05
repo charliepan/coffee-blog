@@ -44,6 +44,8 @@ app.post('/contact/response', blogCtrl.responseEmail);
 //Comment Endpoints
 app.post('/api/comments', blogCtrl.createComment);
 app.get('/api/post/comments/:id', blogCtrl.getPostComments);
+app.put('/api/comments/:id', blogCtrl.editUserComment);
 app.get('/api/comments/:id', blogCtrl.getUserComments);
+app.delete('/api/comments/:id', blogCtrl.deleteUserComment);
 
 app.listen(SERVER_PORT, () => console.log(`Listening from ${SERVER_PORT} server be`));
