@@ -51,7 +51,7 @@ module.exports = {
           .catch(err => console.log(err));
     },
     contactEmail : (req, res) =>{
-        const { name, email, subject, content} = req.body
+        const { name, email, subject, question} = req.body
         let transporter = nodemailer.createTransport({
             host: 'smtp.mail.yahoo.com',
             port: 465,
@@ -63,10 +63,38 @@ module.exports = {
             }
         });
         transporter.sendMail({
-            from: `${name} <${email}>`,
+            from: `Beanafide <${EMAIL}>`,
             to: `Beanafide <${EMAIL}>`,
-            subject: subject,
-            text: content
+            subject: `You have an email from ${name} <${email}> regarding "${subject}"`,
+            text: question
+        },(err,success) =>{
+            if(err){
+                console.log(err);
+                res.status(500).send(`An error has occured: ${err}`);
+            }
+            else{
+                console.log(success)
+                res.status(200).send('Success');
+            }
+        })
+    },
+    responseEmail : (req, res) =>{
+        const { name, email, subject} = req.body
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.mail.yahoo.com',
+            port: 465,
+            service: 'yahoo',
+            secure: false,
+            auth: {
+                user: EMAIL,
+                pass: PASSWORD
+            }
+        });
+        transporter.sendMail({
+            from: `Beanafide <${EMAIL}>`,
+            to: `${name} <${email}>`,
+            subject: `We have received you email regarding "${subject}"`,
+            text: "We ask that you please allow up to 1-2 days for the blog staff to get back to you. We're trying our best to respond on a timely manner. Thank you!"
         },(err,success) =>{
             if(err){
                 console.log(err);

@@ -13,7 +13,12 @@ export default class Articles extends Component {
         }
     }
 
+
     // componentDidMount(){
+    //     this.props.getAllPosts();
+    // }
+
+    // componentDidUpdate(){
     //     this.setState({
     //         title: this.props.post.title,
     //         image: this.props.post.image,
@@ -21,7 +26,6 @@ export default class Articles extends Component {
     //         rating: this.props.post.rating,
     //     })
     // }
-
 
     editPost = () =>{
         const {title, image, content, rating} = this.state;

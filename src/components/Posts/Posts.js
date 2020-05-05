@@ -64,6 +64,7 @@ class Posts extends Component {
                     });
                  })
                  .catch(err => console.log(err));
+
             this.handleToggle();
         }
         else{

@@ -36,6 +36,11 @@ app.get('/api/posts/:id', blogCtrl.getPost);
 app.put('/api/posts/:id', blogCtrl.editPost);
 app.delete('/api/posts/:id', blogCtrl.deletePost);
 
+//Contact Endpoints
+app.post('/contact/blog', blogCtrl.contactEmail);
+app.post('/contact/response', blogCtrl.responseEmail);
+
+
 //Comment Endpoints
 app.get('/api/comments', blogCtrl.getUserComments);
 

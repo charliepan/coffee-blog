@@ -4,6 +4,7 @@ import Landing from './components/Landing/Landing';
 import Posts from './components/Posts/Posts';
 import Contact from './components/Contact/Contact';
 import Profile from './components/Profile/Profile';
+import Article from './components/Article/Article'
 
 export default (
     <Switch>
@@ -11,5 +12,6 @@ export default (
         <Route path='/posts' component={Posts}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/profile' component={Profile}/>
+        <Route path='/post/:id' component={Article}/>
     </Switch>
 )

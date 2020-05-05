@@ -1,20 +1,60 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Contact extends Component {
 
     constructor(props){
         super(props)
         this.state ={
+            name: '',
             email: '',
             subject: '',
             question: ''
         }
     }
+    handleInput = (e) =>{
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    contactEmail = () =>{
+        const {name, email, subject, question} = this.state;
+        axios.post('/contact/blog', {name, email, subject, question})
+             .then(res =>{
+                console.log(res);
+             })
+            .catch(err => console.log(err));
+    }
+    receiveEmail = () =>{
+        const {name, email, subject, question} = this.state;
+        axios.post('/contact/response', {name, email, subject, question})
+             .then(res =>{
+                console.log(res);
+             })
+             .catch(err => console.log(err));
+    }
+    
+
+    handleSubmit = () =>{
+        const {name, email, subject, question} = this.state;
+        if(name !== '' && email !== '' && subject !== '' && question !== ''){
+            this.contactEmail();
+            this.receiveEmail();
+            this.setState({
+                name: '',
+                email: '',
+                subject: '',
+                question: ''
+            });
+        }
+        else{
+            alert("Please fill out all fields");
+        }
+    }
 
     render() {
         return (
-            <div className="container mx-auto px-6 py-16 bg-white h-screen overflow-y-hidden">
-                <div className="justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-20 outline-none focus:outline-none">
+            <div className="container mx-auto px-6 py-12 bg-white h-screen">
+                <div className="justify-center items-center flex overflow-x-hidden inset-0 z-20 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl w-1/2">
                         {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none z-30">
@@ -26,6 +66,10 @@ export default class Contact extends Component {
                                 </div>
                                 {/*Inputs*/}
                                 <div className="relative p-6 flex-auto">
+                                    <div className="flex flex-col mb-4 md:w-full">
+                                        <label className="mb-2 font-bold text-lg text-gray-900">Your Name</label>
+                                        <input className="border py-2 px-3 text-gray-800"  value={this.state.name} name='name' type="text" placeholder="Enter your name" onChange={(e)=> this.handleInput(e)}/>
+                                    </div>
                                     <div className="flex flex-col mb-4 md:w-full">
                                         <label className="mb-2 font-bold text-lg text-gray-900">Your Email</label>
                                         <input className="border py-2 px-3 text-gray-800"  value={this.state.email} name='email' type="text" placeholder="Enter your email" onChange={(e)=> this.handleInput(e)}/>
@@ -46,7 +90,7 @@ export default class Contact extends Component {
                                         className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                                         type="button"
                                         style={{ transition: "all .15s ease" }}
-                                        onClick={this.editPost}
+                                        onClick={this.handleSubmit}
                                     >
                                         Submit
                                     </button>
