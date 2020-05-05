@@ -30,7 +30,7 @@ class Header extends Component {
 
     render() {
         return (
-            <nav className="bg-orange-700 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-2">
+            <nav className="bg-orange-700 z-50 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-2">
                 <div className="flex items-center justify-between px-4 py-2 sm:p-0">
                     <div className='px-2'>
                         <FontAwesomeIcon icon="coffee" color="white"/>
@@ -47,7 +47,7 @@ class Header extends Component {
                         <div className={`px-4 pt-2 pb-4 ${this.state.toggleMenu ? 'block':'hidden'} sm:flex sm:p-0`}>
                             <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 rounded" to='/posts' onClick={this.handleClick} >Posts</Link>
                             <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 mt-1 rounded sm:mt-0 sm:ml-2" to='/contact' onClick={this.handleClick} >Contact</Link>
-                            <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 mt-1 rounded sm:mt-0 sm:ml-2" to='' onClick={this.handleClick} >Socialize</Link>
+                            {/* <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 mt-1 rounded sm:mt-0 sm:ml-2" to='' onClick={this.handleClick} >Socialize</Link> */}
                             <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 mt-1 rounded sm:mt-0 sm:ml-2" to='/profile' onClick={this.handleClick} >Profile</Link>
                             <Link className="text-white block font-semibold hover:bg-orange-500 px-2 py-1 mt-1 rounded sm:mt-0 sm:ml-2" to='/' onClick={this.handleLogout}>Logout</Link>
                         </div>
