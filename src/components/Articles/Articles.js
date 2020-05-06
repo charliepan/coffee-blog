@@ -169,7 +169,7 @@ class Articles extends Component {
         if(limitCont.length > 200){
             limitCont = limitCont.substring(0,200);
             limitCont = limitCont + '...';
-            console.log(limitCont);
+            // console.log(limitCont);
         }
         // console.log(this.props);
         return(
@@ -182,9 +182,9 @@ class Articles extends Component {
                         <div className="text-gray-800 font-bold text-xl mb-2" onClick={this.postLink}>{this.props.post.title}</div>
                         <p className="text-gray-700 text-base">{limitCont}</p>
                     </div>
-                    <div className="flex items-center justify-end">
-                        <img className="w-10 h-10 rounded-full mr-4" src={`${this.props.post.profile_pic}`} alt={`Avatar of ${this.props.post.username}`} />
-                        <div className="text-sm">
+                    <div className="flex items-center justify-end mr-6 mb-2">
+                        <img className="w-10 h-10 rounded-full mr-3" src={`${this.props.post.profile_pic}`} alt={`Avatar of ${this.props.post.username}`} />
+                        <div className="text-sm mr-1">
                             <p className="text-gray-800 leading-none">{this.props.post.username}</p>
                         </div>
                     </div>

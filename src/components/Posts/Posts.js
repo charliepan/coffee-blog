@@ -76,7 +76,7 @@ class Posts extends Component {
         
 
         return (
-            <div className="container mx-auto px-6 py-16 bg-white h-screen">
+            <div className="container mx-auto px-6 py-16 bg-white h-full overflow-y-auto flex-shrink">
                 {/* If admin user button will be available */}
                 {this.props.user.admin ? 
                 (
@@ -164,7 +164,6 @@ class Posts extends Component {
                 ) : null
                 }
                 {this.state.posts.map((post ,i) => <Articles key={i} post={post} admin={this.props.user.admin} getAllPosts={this.getAllPosts}/>)}
-                {/* {mappedPosts} */}
             </div>
         )
     }

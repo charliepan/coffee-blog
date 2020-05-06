@@ -12,29 +12,37 @@ class Profile extends Component {
 
     render() {
         return (
-            <div className="flex items-center justify-center max-w-sm w-1/2 max-w-full flex h-screen">
-                <div className="flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
-                    <div className="px-6">
-                        <div className="flex flex-wrap justify-center">
-                            <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                            <div className="relative">
-                                <img
-                                alt="..."
-                                src={this.props.user.profile_pic}
-                                className="shadow-xl rounded h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                                style={{ maxWidth: "200px" }}
-                                />
-                            </div>
-                            </div>
-                            </div>
-                            <div className="text-center mt-12">
-                                <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                                    {this.props.user.username}
-                                </h3>
-                            </div>
-                            <div className="mt-10 py-10 border-t border-gray-300 text-center"></div>
+            <div className="container mx-auto px-6 py-16 bg-white h-screen">
+                <div className="text-4xl font-bold text-center text-gray-800">
+                    <h1 className="no-underline hover:underline">Profile</h1>
+                </div>
+                <div className="flex relative justify-center py-2">
+                    <img
+                    alt="..."
+                    src={this.props.user.profile_pic}
+                    className="shadow-xl rounded h-auto items-center align-middle border-none"
+                    style={{ maxWidth: "200px" }}
+                    />
+                </div>
+                <div className="text-center mt-12">
+                    <h3 className="text-xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+                        Welcome, {this.props.user.username}!
+                    </h3>
+                </div>
+                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                    <h3 className="text-3xl font-semibold">
+                        Recent Comments
+                    </h3>
+                </div>
+                <div className="flex justify-center max-w-sm w-full max-w-full flex mt-10">
+                <div className="w-3/4 border shadow-lg border-gray-400 border-l-0 bg-white rounded p-12 flex flex-col justify-between leading-normal">
+                    <div className="flex justify-center">
+                        <div className="text-md">
+                            <p className="text-gray-500 text-base text-center">Coming Soon...</p>
+                        </div>
                     </div>
                 </div>
+            </div>
             </div>
             
 
