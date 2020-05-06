@@ -6,6 +6,7 @@ const express = require('express'),
       session = require('express-session'),
       app = express(),
       massive = require('massive'),
+      path = require('path'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(session({
     secret: SESSION_SECRET,
     cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
+app.use(express.static(__dirname + '/../build'));
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -47,5 +49,9 @@ app.get('/api/post/comments/:id', blogCtrl.getPostComments);
 app.put('/api/comments/:id', blogCtrl.editUserComment);
 app.get('/api/comments/:id', blogCtrl.getUserComments);
 app.delete('/api/comments/:id', blogCtrl.deleteUserComment);
+
+app.get('*', (req,res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.listen(SERVER_PORT, () => console.log(`Listening from ${SERVER_PORT} server be`));
